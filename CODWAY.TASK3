@@ -1,0 +1,40 @@
+from tkinter import *
+from tkinter import messagebox
+import string
+import random
+
+def generator():
+    small_alphabets=string.ascii_lowercase
+    capital_alphabets=string.ascii_uppercase
+    numbers=string.digits
+    special_characters=string.punctuation
+    all=small_alphabets+capital_alphabets+numbers+special_characters
+    password_lenght=int(length_Box.get())
+    
+    if choice.get()==1:
+        passwordField.insert(0,random.sample(small_alphabets,password_length))
+
+    password=random.sample(all,password_lenght)
+    passwordField.insert(0,password)
+
+window=Tk()
+window.config(bg="black")
+choice=IntVar()
+Font=("arial",13,"bold")
+
+passwordLabel=Label(window,text="PASSWORD GENRATOR",font=('times new roman',20, 'bold'),bg='black', fg="white")
+passwordLabel.grid(pady=10)
+
+lengthLabel=Label(window,text="PASSWORD LENGTH",font=Font,bg='black', fg="white")
+lengthLabel.grid(pady=5)
+
+length_Box=Spinbox(window, from_=5,to_=18,width=5,font=Font)
+length_Box.grid(pady=5)
+
+generateButton=Button(window,text="GENRATE",font=Font, command=generator)
+generateButton.grid(pady=5)
+
+passwordField=Entry(window,width=25,bd=2, font=Font)
+passwordField.grid()
+
+window.mainloop()
